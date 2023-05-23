@@ -28,10 +28,13 @@ RUN apt-get upgrade -y
 
 RUN apt-get -y install supervisor \
         nginx-extras \
-        php${IMAGE_PHP_VERSION}-fpm \
         git \
+        zip \
+        unzip \
+        curl
+
+RUN apt-get -y install php${IMAGE_PHP_VERSION}-fpm \
         php${IMAGE_PHP_VERSION}-mysql \
-        php-apcu \
         php${IMAGE_PHP_VERSION}-curl \
         php${IMAGE_PHP_VERSION}-gd \
         php${IMAGE_PHP_VERSION}-intl \
@@ -44,10 +47,11 @@ RUN apt-get -y install supervisor \
         php${IMAGE_PHP_VERSION}-pgsql \
         php${IMAGE_PHP_VERSION}-mongo \
         php${IMAGE_PHP_VERSION}-ldap \
-        pwgen \
         php${IMAGE_PHP_VERSION}-cli \
-        curl && \
-    apt-get remove --purge -y software-properties-common && \
+        php-apcu \
+        pwgen
+
+RUN apt-get remove --purge -y software-properties-common && \
     apt-get autoremove -y && \
     apt-get clean && \
     apt-get autoclean && \
